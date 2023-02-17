@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+
+variables:
+  resourceGroupName: 'devopsresourcegroup'
+  varazuresubscription : 'PCS_Development(156859c7-c94a-4494-a2fd-f3fb88d2316d)'
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureCLI@2
+  displayName: 'Delete all resources for the Demo Resource group'
+  inputs:
+    azureSubscription: $(varazuresubscription)
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: 
+      az group delete --name $(resourceGroupName) --yes
