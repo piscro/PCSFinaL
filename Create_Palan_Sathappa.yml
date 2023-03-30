@@ -6,7 +6,6 @@
 pool:
   vmImage: 'ubuntu-latest'
 steps:
-tasks:
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'DevOpsSPN'
