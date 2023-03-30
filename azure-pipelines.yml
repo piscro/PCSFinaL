@@ -1,0 +1,46 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  resource-group-name: 'iac-demo'
+  location: 'centralus'
+  storage-account-name: 'khsiacdemo'
+  storage-sku: 'Standard_LRS'
+
+steps:
+- task: AzureCLI@2
+  displayName: 'Azure CLI - Create Storage Resource'
+  inputs:
+    azureSubscription: 'DevOpsSPN'
+    scriptType: pscore
+    scriptLocation: inlineScript
+    inlineScript: |
+     [CmdletBinding()]
+     param (
+         [string]$location,
+         [string]$resourceGroupName,
+         [string]$storageAccount,
+         [string]$storageSku
+     )
+      
+     Write-Output "Creating resource group..."
+     az group create `
+         --location $location `
+         --name $resourceGroupName 
+      
+     Write-Output "Creating storage account..."
+     az storage account create `
+         --name $storageAccount `
+         --resource-group $resourceGroupName `
+         --location $location `
+         --sku $storageSku 
+    arguments: '-resourceGroupName "$(resource-group-name)" -location "$(location)" -storageAccount "$(storage-account-name)" -storageSku "$(storage-sku)"'
+
