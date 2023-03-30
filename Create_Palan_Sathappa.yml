@@ -9,9 +9,7 @@ trigger:
 variables:
   resourceGroupName: 'DevTestResourceGroup'
   location: 'eastUS'
-  templateFile: 'main.bicep'
-  varazureSubscription : 'PCS_Development(156859c7-c94a-4494-a2fd-f3fb88d2316d)'
-
+  
 pool:
 steps:
 
@@ -22,5 +20,5 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       az --version
-            az group create --name $(resourceGroupName) --location $(location)
+      az group create --name $(resourceGroupName) --location $(location)
 
