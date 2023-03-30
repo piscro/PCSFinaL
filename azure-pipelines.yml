@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  resource-group-name: 'iac-demo'
+  resource-group-name: 'DemoDevOps'
   location: 'centralus'
   storage-account-name: 'khsiacdemo'
   storage-sku: 'Standard_LRS'
@@ -31,10 +31,6 @@ steps:
          [string]$storageSku
      )
       
-     Write-Output "Creating resource group..."
-     az group create `
-         --location $location `
-         --name $resourceGroupName 
       
      Write-Output "Creating storage account..."
      az storage account create `
