@@ -9,10 +9,8 @@ trigger:
 variables:
   resourceGroupName: 'DevTestResourceGroup'
   location: 'eastUS'
-  
 pool:
 steps:
-
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'DevOpsSPN'
