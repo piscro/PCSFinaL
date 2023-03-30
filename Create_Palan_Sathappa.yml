@@ -5,10 +5,6 @@
 
 trigger:
 - none
-
-variables:
-  resourceGroupName: 'DevTestResourceGroup'
-  location: 'eastUS'
 pool:
 steps:
 - task: AzureCLI@2
@@ -18,5 +14,5 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       az --version
-      az group create --name $(resourceGroupName) --location $(location)
+      az group create --name DevTestResourceGroup --location eastUS
 
