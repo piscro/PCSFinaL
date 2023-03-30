@@ -6,12 +6,11 @@
 pool:
   vmImage: 'ubuntu-latest'
 steps:
+tasks:
 - task: AzureCLI@2
   inputs:
     azureSubscription: 'DevOpsSPN'
-    scriptType: 'ps'
+    scriptType: 'batch'
     scriptLocation: 'inlineScript'
-    inlineScript: |
-      az --version
-      az group create --name DevTestResourceGroup --location eastUS
+    inlineScript: 'az group create --name devOpsPCS --location eastUS'
 
